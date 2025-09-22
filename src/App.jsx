@@ -54,7 +54,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/' element={<Landing />} />
-        <Route path='/search' element={<Search movieArray={movieList} loadingState={isLoading} />} />
+        <Route path='/search' element={<Search click={fetchMovies} movieArray={movieList} loadingState={isLoading} />} />
         {/* <Route path='/movie' element={<Movie />} /> */}
       </Routes>
 

@@ -156,7 +156,7 @@ nav>.row {
     align-items: center;
 }
 
-#landing__search--input,
+.landing__search--input,
 .landing__search--btn{
     padding: 1rem;
     font-size: 1.5rem;
@@ -168,7 +168,7 @@ nav>.row {
 }
 
 
-#landing__search--input {
+.landing__search--input {
     width: calc(100% * .75);
     background-color: var(--theme-dusty-creme);
     color: var(--theme-dark-grey-green);
