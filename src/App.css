@@ -15,7 +15,9 @@
     padding: 0;
 
 }
-
+/* 
+DEFAULT STYLING
+*/
 ul,
 ol,
 li {
@@ -41,6 +43,9 @@ a {
     background-color: inherit;
 }
 
+/* 
+NAVIGATION BAR
+*/
 nav {
     width: 100%;
     height: var(--nav-bar-height);
@@ -110,6 +115,9 @@ nav>.row {
     color: var(--theme-dark-grey-green);
 }
 
+/* 
+LANDING PAGE
+*/
 
 .row:has(.landing) {
     justify-content: center;
@@ -185,6 +193,10 @@ nav>.row {
     cursor: pointer;
 }
 
+/* 
+SEARCH PAGE
+*/
+
 .search__bar{
     padding: 3rem 4rem;
     display: flex;
@@ -198,11 +210,19 @@ nav>.row {
     height: 4rem;
 }
 
+/* 
+SEARCHED MOVIES DISPLAY 
+*/
+
 #movies{
     background-color: var(--theme-light-purple);
     height: 100%;
     min-height: calc( 100vh - 260px);
 }
+
+/* 
+MOVIE FILTERS
+ */
 
 .filter__search--wrapper{
     background-color: inherit;
@@ -233,10 +253,14 @@ nav>.row {
     cursor: pointer;
 }
 
+/* 
+INDIVIDUAL MOVIE CARDS
+*/
+
 .movies{
     padding: 2rem 1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: start;
     flex-wrap: wrap;
     background-color: inherit;
@@ -247,7 +271,7 @@ nav>.row {
 }
 
 .movie{
-    width: calc((100% / 4) - (0.25rem * 6));
+    width: calc((100% / 4) - (0.25rem * 3));
     border-radius: 1rem;
     background-color: var(--theme-dark-purple);
     padding: 0.5rem;
