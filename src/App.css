@@ -292,12 +292,18 @@ INDIVIDUAL MOVIE CARDS
 
 .movie__title{
     font-size: 1.375rem;
-    height: calc((1.375rem + 0.25rem) * 2.125);
+    height: calc((1.375rem + 0.25rem) * 2.3);
     font-weight: 700;
     color: var(--theme-dusty-creme);
     padding: 0.25rem;
     overflow-y: hidden;
     overflow-x: hidden;
+}
+
+.movie__title:hover{
+    height: auto;
+    min-height: calc((1.375rem + 0.25rem) * 2.3);
+    overflow: visible;
 }
 
 .movie__rating--wrapper{
