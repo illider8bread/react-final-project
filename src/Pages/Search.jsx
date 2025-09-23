@@ -8,50 +8,98 @@ function Search({ click, movieArray, loadingState }) {
 
 
     const [query, setQuery] = useState(""); //copied over from App.jsx. Sets the query for the search function
+    const [filter, setFilter] = useState("DEFAULT");
+    const [filteredMovies, setFilteredMovies] = useState(movieArray); // State for filtered movies
 
-    const searchTerms = () => {
-        setQuery(document.getElementById("search__input").value); //sets the value of query to what's in the text box. the value is encoded to URI by the search function
+    const handleSearchChange = (event) => {
+        setQuery(event.target.value);
     };
 
-    const enterSearch = (event) => { //runs every time a key is pressed down in the input text box
-        if (event.key === "Enter") { //checks if the key pressed was the "enter" key
-            searchTerms(); // if it is enter, it runs the searchTerms function and sets the value of query to the text in the textbox
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            click(query);
         }
-    };//otherwise the function does nothing
-    const filteredMovies = movieArray; // creates a copy of the movie api array
-
-    const filterResults = (event) => {
-        const filter = event.target.value || ""// sets value of filter to the value of the option selected, or if nothing selected, then blank string
-        if (filter === "" || filter === 'DEFAULT'){//if filter is not engaged (aka equals default value or is empty)
-            return filteredMovies//then do nothing and exit this function
-        } else if (filter === "RELEASE_OLD_TO_NEW"){ // if the filter is __ do this
-            console.log("release old to new")
-                filteredMovies.sort(
-                (a, b) => {
-                    return parseInt(a.release_date) - parseInt(b.release_date) //converts release date to integer and year, then sorts
-                })
-        } else if (filter === "RELEASE_NEW_TO_OLD"){// if the filter is __ do this
-            console.log("release new to old")
-            filteredMovies.sort(
-                (a, b) => {
-                    return parseInt(b.release_date) - parseInt(a.release_date)//converts release date to integer and year, then sorts
-                })
-        }else if (filter === "RATING_HIGH_TO_LOW"){// if the filter is __ do this
-            console.log("rating high to low")
-            filteredMovies.sort(
-                (a, b) => {
-                    return parseFloat(b.popularity) - parseFloat(a.popularity) // converts popularity to decimal, then sorts
-                })
-        }else if (filter === "RATING_LOW_TO_HIGH"){// if the filter is __ do this
-            console.log("rating low to high")
-            filteredMovies.sort(
-                (a, b) => {
-                    return parseFloat(a.popularity) - parseFloat(b.popularity)// converts popularity to decimal, then sorts
-                })
-        }
-        console.log(filteredMovies);
-        return filteredMovies;
     };
+
+    const handleFilterChange = (event) => {
+        setFilter(event.target.value);
+    };
+
+    useEffect(() => {
+        // Update filteredMovies whenever movieArray, query, or filter changes
+        let movies = [...movieArray];
+
+        // Filter by query
+        if (query) {
+            movies = movies.filter(movie => 
+                movie.title.toLowerCase().includes(query.toLowerCase())
+            );
+        }
+
+        // Sort based on selected filter
+        switch (filter) {
+            case "RELEASE_OLD_TO_NEW":
+                movies.sort((a, b) => new Date(a.release_date) - new Date(b.release_date));
+                break;
+            case "RELEASE_NEW_TO_OLD":
+                movies.sort((a, b) => new Date(b.release_date) - new Date(a.release_date));
+                break;
+            case "RATING_HIGH_TO_LOW":
+                movies.sort((a, b) => parseFloat(b.vote_average) - parseFloat(a.vote_average));
+                break;
+            case "RATING_LOW_TO_HIGH":
+                movies.sort((a, b) => parseFloat(a.vote_average) - parseFloat(b.vote_average));
+                break;
+            default:
+                break;
+        }
+
+        setFilteredMovies(movies); // Update the state with filtered and sorted movies
+    }, [movieArray, query, filter]); // Dependencies for useEffect
+
+
+    // const searchTerms = () => {
+    //     setQuery(document.getElementById("search__input").value); //sets the value of query to what's in the text box. the value is encoded to URI by the search function
+    // };
+
+    // const enterSearch = (event) => { //runs every time a key is pressed down in the input text box
+    //     if (event.key === "Enter") { //checks if the key pressed was the "enter" key
+    //         searchTerms(); // if it is enter, it runs the searchTerms function and sets the value of query to the text in the textbox
+    //     }
+    // };//otherwise the function does nothing
+   
+    // const filterResults = (event) => {
+    //     const filter = event.target.value || ""// sets value of filter to the value of the option selected, or if nothing selected, then blank string
+    //     if (filter === "" || filter === 'DEFAULT'){//if filter is not engaged (aka equals default value or is empty)
+    //         return filteredMovies//then do nothing and exit this function
+    //     } else if (filter === "RELEASE_OLD_TO_NEW"){ // if the filter is __ do this
+    //         console.log("release old to new")
+    //             filteredMovies.sort(
+    //             (a, b) => {
+    //                 return parseInt(a.release_date) - parseInt(b.release_date) //converts release date to integer and year, then sorts
+    //             })
+    //     } else if (filter === "RELEASE_NEW_TO_OLD"){// if the filter is __ do this
+    //         console.log("release new to old")
+    //         filteredMovies.sort(
+    //             (a, b) => {
+    //                 return parseInt(b.release_date) - parseInt(a.release_date)//converts release date to integer and year, then sorts
+    //             })
+    //     }else if (filter === "RATING_HIGH_TO_LOW"){// if the filter is __ do this
+    //         console.log("rating high to low")
+    //         filteredMovies.sort(
+    //             (a, b) => {
+    //                 return parseFloat(b.popularity) - parseFloat(a.popularity) // converts popularity to decimal, then sorts
+    //             })
+    //     }else if (filter === "RATING_LOW_TO_HIGH"){// if the filter is __ do this
+    //         console.log("rating low to high")
+    //         filteredMovies.sort(
+    //             (a, b) => {
+    //                 return parseFloat(a.popularity) - parseFloat(b.popularity)// converts popularity to decimal, then sorts
+    //             })
+    //     }
+    //     console.log(filteredMovies);
+    //     return filteredMovies;
+    // };
 
     useEffect(() => { // runs the search function (imported as a prop from App.jsx) every time the value of query changes
         click(query)
@@ -65,7 +113,8 @@ function Search({ click, movieArray, loadingState }) {
                 <div className="search">
                     <input type="text"
                         name="landing__search"
-                        onKeyDown={enterSearch}
+                        onChange={handleSearchChange}
+                        onKeyDown={handleKeyPress}
                         /*enables the check for enter funtion, triggers the click useEffect */
                         id="search__input"
                         placeholder="Search movies now"
@@ -73,7 +122,7 @@ function Search({ click, movieArray, loadingState }) {
                     />
                     <button
                         className="landing__search--btn"
-                        onClick={searchTerms}
+                        onClick={() => click(query)}
                     /*enables the value of query to be updated. triggers the click useEffect */
                     >
                         <svg className="mag-glass" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
@@ -90,7 +139,7 @@ function Search({ click, movieArray, loadingState }) {
                         <div className="filter__search--wrapper">
                             <p>Filter Movies By:</p>
                             <select
-                                onChange={filterResults}
+                                onChange={handleFilterChange}
                                 name="filter__search"
                                 id="filter__search"
                                 defaultValue="DEFAULT">
