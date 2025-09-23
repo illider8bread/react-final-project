@@ -35,6 +35,13 @@ a {
     background-color: inherit;
 }
 
+Link{
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    
+}
+
 .row {
     padding-left: 1rem;
     padding-right: 1rem;
