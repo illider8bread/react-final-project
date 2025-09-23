@@ -25,7 +25,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [movieList, setMovieList] = useState([]);
   const [query, setQuery] = useState("");
-  const [filter, setFilter] = useState("");
+
 
   console.log(currentDate);
   const fetchMovies = async (query = '') => {
@@ -48,44 +48,18 @@ function App() {
     
   };
 
-  function setFilterMovies(event) {
-    setFilter(event.target.value)
-  }
 
-  function filterMovies(movielist){
-    if (filter === "RELEASE_OLD_TO_NEW") {
-      movielist.sort(
-        (a, b) => (a.release_date ) - (b.release_date)
-      );
-    } else if (filter === "RELEASE_NEW_TO_OLD") {
-      movielist.sort(
-        (a, b) => (b.release_date) - (a.release_date)
-      );
-    } else if (filter === "RATING_HIGH_TO_LOW") {
-      movielist.sort(
-        (a, b) => b.popularity - a.popularity
-      );
-    } else if (filter === "RATING_LOW_TO_HIG") {
-      movielist.sort(
-        (a, b) => b.popularity - a.popularity
-      );
-    }
-  }
 
   useEffect(() => {
     fetchMovies(query);
   }, [query])
-  useEffect(() => {
-    console.log(movieList);
-    filterMovies(movieList)
-  }, [movieList, filter]);
 
   return (
     <BrowserRouter>
       <Nav />
       <Routes>
         <Route path='/' element={<Landing />} />
-        <Route path='/search' element={<Search filter={setFilterMovies} click={fetchMovies} movieArray={movieList} loadingState={isLoading} />} />
+        <Route path='/search' element={<Search  click={fetchMovies} movieArray={movieList} loadingState={isLoading} />} />
         {/* <Route path='/movie' element={<Movie />} /> */}
       </Routes>
 
