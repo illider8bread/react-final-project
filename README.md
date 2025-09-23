@@ -19,5 +19,6 @@ Functionality
     ~~get API to map to html~~
     ~~make search function~~
     ~~connect search function to search inputs~~
+    ~~get filters to function~~
     connect home page search to search page search
     create dynamic routing for movie displays
