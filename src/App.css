@@ -354,7 +354,7 @@ MOVIE PAGE
 */
 
 #display {
-    background-color: var(--theme-creme);
+    background-color: var(--theme-dusty-creme);
     min-height: calc(100vh - var(--nav-bar-height));
 }
 
@@ -365,6 +365,7 @@ MOVIE PAGE
 
 .movie__img--wrapper {
     width: 40%;
+    padding-left: 1rem;
 
 }
 
@@ -387,7 +388,7 @@ MOVIE PAGE
 
 .movie__page--quick-stats {
     display: flex;
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
 }
 
 .movie__quick-stats {
@@ -395,11 +396,13 @@ MOVIE PAGE
     overflow-x: wrap;
     font-weight: 400;
     color: var(--theme-dark-grey-green);
+    padding: 0.5rem;
 }
 
 .movie__stat--title {
     font-weight: 500;
     color: inherit;
+    font-size: inherit;
 }
 
 .movie__page--overview {

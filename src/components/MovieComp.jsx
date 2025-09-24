@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import NoPoster from "../assets/NoPoster.png"
 
 
@@ -7,7 +8,9 @@ function MovieComp(movies) {
         <>
             {moviesArray.map((movie) => (
                 <div className="movie" key={movie.id}> {/* Add a key prop for each movie */}
-                    <img className="movie__poster" src={movie.poster_path === null ? NoPoster : `https://image.tmdb.org/t/p/original${movie.poster_path}` } alt={`${movie.title} original poster`} />
+                    <Link to={`/movie/${movie.id}`}>
+                        <img className="movie__poster" src={movie.poster_path === null ? NoPoster : `https://image.tmdb.org/t/p/original${movie.poster_path}`} alt={`${movie.title} original poster`} />
+                    </Link>
                     <div className="movie__description--wrapper">
                         <h3 className="movie__title">{movie.title}</h3>
                         <div className="movie__rating--wrapper">
@@ -24,6 +27,7 @@ function MovieComp(movies) {
                         </div>
                     </div>
                 </div>
+
             ))}
         </>
     );

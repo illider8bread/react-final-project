@@ -58,48 +58,7 @@ function Search({ click, movieArray, loadingState }) {
     }, [movieArray, query, filter]); // Dependencies for useEffect
 
 
-    // const searchTerms = () => {
-    //     setQuery(document.getElementById("search__input").value); //sets the value of query to what's in the text box. the value is encoded to URI by the search function
-    // };
-
-    // const enterSearch = (event) => { //runs every time a key is pressed down in the input text box
-    //     if (event.key === "Enter") { //checks if the key pressed was the "enter" key
-    //         searchTerms(); // if it is enter, it runs the searchTerms function and sets the value of query to the text in the textbox
-    //     }
-    // };//otherwise the function does nothing
-   
-    // const filterResults = (event) => {
-    //     const filter = event.target.value || ""// sets value of filter to the value of the option selected, or if nothing selected, then blank string
-    //     if (filter === "" || filter === 'DEFAULT'){//if filter is not engaged (aka equals default value or is empty)
-    //         return filteredMovies//then do nothing and exit this function
-    //     } else if (filter === "RELEASE_OLD_TO_NEW"){ // if the filter is __ do this
-    //         console.log("release old to new")
-    //             filteredMovies.sort(
-    //             (a, b) => {
-    //                 return parseInt(a.release_date) - parseInt(b.release_date) //converts release date to integer and year, then sorts
-    //             })
-    //     } else if (filter === "RELEASE_NEW_TO_OLD"){// if the filter is __ do this
-    //         console.log("release new to old")
-    //         filteredMovies.sort(
-    //             (a, b) => {
-    //                 return parseInt(b.release_date) - parseInt(a.release_date)//converts release date to integer and year, then sorts
-    //             })
-    //     }else if (filter === "RATING_HIGH_TO_LOW"){// if the filter is __ do this
-    //         console.log("rating high to low")
-    //         filteredMovies.sort(
-    //             (a, b) => {
-    //                 return parseFloat(b.popularity) - parseFloat(a.popularity) // converts popularity to decimal, then sorts
-    //             })
-    //     }else if (filter === "RATING_LOW_TO_HIGH"){// if the filter is __ do this
-    //         console.log("rating low to high")
-    //         filteredMovies.sort(
-    //             (a, b) => {
-    //                 return parseFloat(a.popularity) - parseFloat(b.popularity)// converts popularity to decimal, then sorts
-    //             })
-    //     }
-    //     console.log(filteredMovies);
-    //     return filteredMovies;
-    // };
+  
 
     useEffect(() => { // runs the search function (imported as a prop from App.jsx) every time the value of query changes
         click(query)
