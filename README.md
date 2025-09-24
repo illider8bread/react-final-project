@@ -5,13 +5,13 @@ TODO:
         ~~Search Page~~
         ~~Nav bar~~
         ~~Movie cars~~
-        Movie pages
+        ~~Movie pages~~
     ~~CSS Styling the structures~~
         ~~Landing page~~
         ~~Search Page~~
         ~~Nav bar~~
         ~~Movie cars~~
-        Movie pages
+        ~~Movie pages~~
     ~~Routing between pages~~
 
 Functionality
@@ -20,5 +20,4 @@ Functionality
     ~~make search function~~
     ~~connect search function to search inputs~~
     ~~get filters to function~~
-    connect home page search to search page search
-    create dynamic routing for movie displays
+    ~~create dynamic routing for movie displays~~
