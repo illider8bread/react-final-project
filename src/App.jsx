@@ -59,7 +59,7 @@ function App() {
         Property 3: loadingState=isLoading. this passes the value of the isLoading useState to the component so that it knows when to render the skeleton cards*/}
 
 
-        <Route path='/movie/' element={<Movie />} />
+        <Route path='/movie' element={<Movie />} />
       </Routes>
 
 
