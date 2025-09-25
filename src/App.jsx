@@ -12,7 +12,6 @@ const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 let currentDate = new Date().toJSON().slice(0, 10);
 
 function App() {
-  require('dotenv').config()
   const [isLoading, setIsLoading] = useState(false); //sets loading state which is attached to the skeleton movie cards in search.jsx
   const [movieList, setMovieList] = useState([]); //sets array from API
   const [query, setQuery] = useState("") //sets value of query and gets updated by a function in the search.jsx called searchTerms
