@@ -8,7 +8,7 @@ import Search from './Pages/Search';
 import Movie from './Pages/Movie';
 
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+const TMDB_API_KEY = `2208451cb55fd35270399e37495d9501`;
 let currentDate = new Date().toJSON().slice(0, 10);
 
 function App() {
